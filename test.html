@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lock Scroll Example</title>
+    <style>
+        body {
+            height: 2000px; /* 用于演示页面滚动 */
+        }
+        .no-scroll {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <button id="lockScrollBtn">锁定滚动</button>
+    <button id="unlockScrollBtn">解锁滚动</button>
+
+    <script>
+        const lockScrollBtn = document.getElementById('lockScrollBtn');
+        const unlockScrollBtn = document.getElementById('unlockScrollBtn');
+
+        let scrollPosition = 0;
+
+        lockScrollBtn.addEventListener('click', () => {
+            // 保存当前滚动位置
+            scrollPosition = window.scrollY;
+
+            // 锁定页面滚动
+            document.body.style.top = `-${scrollPosition}px`;
+            document.body.classList.add('no-scroll');
+        });
+
+        unlockScrollBtn.addEventListener('click', () => {
+            // 解锁页面滚动
+            document.body.classList.remove('no-scroll');
+            window.scrollTo(0, scrollPosition);
+        });
+    </script>
+</body>
+</html>
